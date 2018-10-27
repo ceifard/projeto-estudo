@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-
+      <header-produtos></header-produtos>
   </div>
 </template>
 
 <script>
-//import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/shared/header/Header.vue'
 
 export default {
-  // name: 'app',
-  // components: {
-  //   HelloWorld
-  // }
+  components: {
+    'header-produtos': Header
+  }
 }
 </script>
 
