@@ -1,9 +1,9 @@
 <template>
-    <footer>
+    <div class="footer">
         <span class="copyright">
             Feito por: Fernando Silva
         </span>
-    </footer>
+    </div>
 </template>
 
 <script>
@@ -13,7 +13,7 @@
 </script>
 
 <style lang="scss">
-    footer {
+    .footer {
         display: flex;
         justify-content: center;
         align-items: center;

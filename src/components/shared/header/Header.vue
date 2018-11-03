@@ -1,5 +1,5 @@
 <template>
-    <header class="app-header bordered">
+    <div class="app-header bordered">
         <div class="app-header__logo bordered">
             <h1>Logo</h1>
         </div>
@@ -9,7 +9,7 @@
         <div class="app-header__user bordered">
             <span><font-awesome-icon class="usericon" icon="user" />Seja bem vindo, Fernando!</span>
         </div>
-    </header>
+    </div>
 </template>
 
 <script>
@@ -22,7 +22,6 @@
     .app-header{
         background: $cor-principal;
         color: $cor-letra-principal;
-        box-shadow: 1px 1px 5px black;
         font-size: 9px;
         display: flex;
         padding: 3px;
@@ -49,7 +48,7 @@
                 justify-content: center;
             }        
             &__user {
-                margin-right: 10px;
+                margin-right: 2px;
                 display: block;
                 align-self: center;
                 font-size: 12px;
