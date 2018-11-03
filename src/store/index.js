@@ -1,3 +1,10 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+import produtos from './modulos/produtos'
+
+Vue.use(Vuex)
+
 const state = {
     carregando: false,
     mensagem: ''
@@ -16,3 +23,12 @@ const mutations = {
         state.mensagem = obj;
     }    
 }
+
+export default new Vuex.Store({
+    state,
+    mutations,
+    getters,
+    modules: {
+        produtos
+    }
+  })

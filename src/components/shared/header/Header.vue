@@ -4,7 +4,7 @@
             <h1>Logo</h1>
         </div>
         <div class="app-header__title bordered">
-            <h2>Listagem de Produtos</h2>
+            <h2>{{titulo}}</h2>
         </div>
         <div class="app-header__user bordered">
             <span><font-awesome-icon class="usericon" icon="user" />Seja bem vindo, Fernando!</span>
@@ -14,7 +14,11 @@
 
 <script>
     export default {
-
+        props: {
+            titulo: {
+                required: true,
+            }
+        }
     }
 </script>
 

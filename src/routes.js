@@ -5,15 +5,18 @@ export const routes = [
     {
         path: '',
         component: Cadastro,
+        title: 'Cadastro de Produtos',
     },      
     {
         path: '/cadastro',
         name: 'cadastro',
+        title: 'Cadastro de Produtos',
         component: Cadastro,
     },    
     {
         path: '/listagem',
         name: 'listagem',
+        title: 'Listagem de Produtos',
         component: Listagem,
     }
 ]

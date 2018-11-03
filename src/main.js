@@ -19,7 +19,6 @@ export const router = new VueRouter({
 });
 
 library.add(faUser);
-
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
