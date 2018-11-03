@@ -2,7 +2,7 @@
   <div id="app">
       <header-produtos></header-produtos>
       <main-produtos>
-          <div class="container">aaaa</div>
+          <router-view></router-view>
       </main-produtos>
       <footer-produtos></footer-produtos>
   </div>
