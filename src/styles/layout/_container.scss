@@ -1,11 +1,10 @@
 .container {
-    background-color: black;
-    color: $cor-letra-principal;
     margin: 50px;
     padding: 10px;
     min-height: 10px;
-    box-shadow: 1px 1px 5px black;
-    &__large {
+    background: white;
+    box-shadow: 1px 1px 5px black; 
+    &.container-large {
         margin: 20px;
     }
 }

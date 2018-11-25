@@ -7,9 +7,9 @@
       <main-produtos>
           <router-view></router-view>
       </main-produtos>        
-      <footer>
+      <!-- <footer>
         <footer-produtos></footer-produtos>
-      </footer>
+      </footer> -->
   </div>
 </template>
 
@@ -33,7 +33,8 @@ export default {
   },
   computed: {
     routeTitle() {
-      let route = routes.find( route => route.path == this.$route.path )
+      let path = this.$route.path === "/" ? "" : this.$route.path;
+      let route = routes.find( route => route.path == path )
       return route.title;
     }
   }

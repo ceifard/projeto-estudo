@@ -20,10 +20,10 @@
 <style lang="scss">
     a {
         text-decoration: none;
-        color: black;
+        color: $cor-letra-principal;
     }
     .navbar {
-        background: white;
+        background: $cor-principal;
         box-shadow: 1px 1px 5px #ccc;
         &__navmenu {
             display:flex;
@@ -34,7 +34,7 @@
                 display: flex;
                 padding: 5px;
                 margin-right: 5px;
-                height: 30px;
+                height: 40px;
                 li {
                     align-self: center;
                     list-style: none;

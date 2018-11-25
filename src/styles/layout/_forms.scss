@@ -1,0 +1,24 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    &__group {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        label {
+            margin-bottom: 5px;
+        }
+        input {
+            border: 1px solid #ccc;
+            height: 35px;
+            padding: 0 5px;
+            box-shadow: 0.5px 0.5px 4px 0px #ccc;
+        }
+    } 
+}
+@media (min-width: 900px) {
+    .form-container {
+        flex-direction: row;     
+    }    
+}

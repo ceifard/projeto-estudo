@@ -20,6 +20,7 @@
         color: $cor-letra-principal;
         height: 50px;
         background: $cor-principal;
+        border-top: 1px solid #ffffff73;
     }
 </style>
 

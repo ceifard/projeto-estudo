@@ -1,6 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
 div#app {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     font-family: 'Lato', sans-serif;
+}
+
+.main-content {
+    background-image: url('~@/../static/img/Ecommerce-Website-Development-Voixly-Ecommerce-Website.jpg');
+    background-size: cover;
 }
