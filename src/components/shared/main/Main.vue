@@ -7,7 +7,6 @@
 <style lang="scss">
   .main-content {
     flex: 1 1 auto;
-    // background-image: url('../../../../static/img/Ecommerce-Website-Development-Voixly-Ecommerce-Website.jpg');
   }
 
   
