@@ -27,32 +27,38 @@
 </template>
 
 <script>
+    import { mapFields } from 'vuex-map-fields';
     export default {
         computed: {
-            nomeProd: {
-                get () {
-                    return this.$store.getters.nomeProd
-                },
-                set (value) {
-                    this.$store.commit('setNomeProd', value)
-                }
-            },
-            precoProd: {
-                get () {
-                    return this.$store.getters.precoProd
-                },
-                set (value) {
-                    this.$store.commit('setPrecoProd', value)
-                }
-            },
-            categoriaProd: {
-                get () {
-                    return this.$store.getters.categoriaProd
-                },
-                set (value) {
-                    this.$store.commit('setCategoriaProd', value)
-                }
-            }                        
+            ...mapFields([
+            'produto.nomeProd',
+            'produto.precoProd',
+            'produto.categoriaProd',
+            ]),            
+            // nomeProd: {
+            //     get () {
+            //         return this.$store.getters.nomeProd
+            //     },
+            //     set (value) {
+            //         this.$store.commit('nomeProd', value)
+            //     }
+            // },
+            // precoProd: {
+            //     get () {
+            //         return this.$store.getters.precoProd
+            //     },
+            //     set (value) {
+            //         this.$store.commit('precoProd', value)
+            //     }
+            // },
+            // categoriaProd: {
+            //     get () {
+            //         return this.$store.getters.categoriaProd
+            //     },
+            //     set (value) {
+            //         this.$store.commit('categoriaProd', value)
+            //     }
+            // }                        
         }
     }
 </script>

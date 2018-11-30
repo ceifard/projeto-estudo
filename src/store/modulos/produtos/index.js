@@ -1,6 +1,7 @@
 import actions from './actions';
-import getters from './getters';
-import mutations from './mutations';
+import { getField, updateField } from 'vuex-map-fields';
+// import getters from './getters';
+// import mutations from './mutations';
 
 const state = {
   produto: {
@@ -8,6 +9,14 @@ const state = {
     precoProd: '',
     categoriaProd: '',    
   }
+}
+
+const getters =  {
+  getField,
+}
+
+const mutations =  {
+  updateField,
 }
 
 export default {
