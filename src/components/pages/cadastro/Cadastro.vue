@@ -24,8 +24,8 @@
             </div>            
         </div>
 
-        <div class="row">
-            <input type="button" value="Enviar">
+        <div class="row toend">
+            <input class="button" type="button" value="Enviar">
         </div>
     </div>
 </template>
