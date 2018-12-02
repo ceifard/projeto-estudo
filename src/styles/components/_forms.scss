@@ -1,9 +1,7 @@
 .form-container {
     display: flex;
     flex-direction: column;
-    padding: 10px;
     &__group {
-        padding: 10px;
         display: flex;
         flex-direction: column;
         label {

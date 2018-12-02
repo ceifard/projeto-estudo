@@ -23,6 +23,10 @@
                        type="text">
             </div>            
         </div>
+
+        <div class="row">
+            <input type="button" value="Enviar">
+        </div>
     </div>
 </template>
 
