@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="form-container">
+        <div class="form-container row">
             <div class="form-container__group flex-7">
                 <label for="nomeProd">Nome do Produto:</label>
                 <input id="nomeProd"
@@ -31,34 +31,10 @@
     export default {
         computed: {
             ...mapFields([
-            'produto.nomeProd',
-            'produto.precoProd',
-            'produto.categoriaProd',
-            ]),            
-            // nomeProd: {
-            //     get () {
-            //         return this.$store.getters.nomeProd
-            //     },
-            //     set (value) {
-            //         this.$store.commit('nomeProd', value)
-            //     }
-            // },
-            // precoProd: {
-            //     get () {
-            //         return this.$store.getters.precoProd
-            //     },
-            //     set (value) {
-            //         this.$store.commit('precoProd', value)
-            //     }
-            // },
-            // categoriaProd: {
-            //     get () {
-            //         return this.$store.getters.categoriaProd
-            //     },
-            //     set (value) {
-            //         this.$store.commit('categoriaProd', value)
-            //     }
-            // }                        
+                'produto.nomeProd',
+                'produto.precoProd',
+                'produto.categoriaProd',
+            ]),                                
         }
     }
 </script>
