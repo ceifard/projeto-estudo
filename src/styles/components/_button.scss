@@ -4,4 +4,8 @@
     background: #2e352eb8;
     border: 1px solid #ccc;
     font-size: larger;
+    &:active, &:hover {
+        cursor: pointer;
+        background: #2f352f;
+    }
 }

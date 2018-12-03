@@ -25,7 +25,7 @@
         </div>
 
         <div class="row toend">
-            <input class="button" type="button" value="Enviar">
+            <input class="button" @click="adicionaProduto()" type="button" value="Enviar">
         </div>
     </div>
 </template>
@@ -35,10 +35,16 @@
     export default {
         computed: {
             ...mapFields([
+                'produto',
                 'produto.nomeProd',
                 'produto.precoProd',
                 'produto.categoriaProd',
             ]),                                
+        },
+        methods: {
+            adicionaProduto() {
+                this.$store.dispatch('adicionaProduto');
+            }
         }
     }
 </script>

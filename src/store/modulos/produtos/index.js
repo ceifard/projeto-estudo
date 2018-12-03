@@ -1,9 +1,8 @@
 import actions from './actions';
 import { getField, updateField } from 'vuex-map-fields';
-// import getters from './getters';
-// import mutations from './mutations';
 
 const state = {
+  produtos: [],
   produto: {
     nomeProd: '',
     precoProd: '',
@@ -12,10 +11,12 @@ const state = {
 }
 
 const getters =  {
+  produtos: () => state.produtos,
   getField,
 }
 
 const mutations =  {
+  produtos: (state, obj) => state.produtos = obj,
   updateField,
 }
 
