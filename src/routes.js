@@ -1,5 +1,6 @@
 import Cadastro from './components/pages/cadastro/Cadastro.vue';
 import Listagem from './components/pages/listagem/Listagem.vue';
+import Login from './components/pages/login/Login.vue';
 
 export const routes = [
     {
@@ -18,5 +19,11 @@ export const routes = [
         name: 'listagem',
         title: 'Listagem de Produtos',
         component: Listagem,
-    }
+    },
+    {
+        path: '/login',
+        name: 'login',
+        title: 'Login',
+        component: Login,
+    }    
 ]
