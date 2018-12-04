@@ -1,32 +1,65 @@
 <template>
-    <div class="login-box">
+    <div class="login-box">    
         <div class="container login">
+            <div class="row tocenter">
+                <span class="mensagem-login" v-if="mensagemLogin.length">
+                    {{mensagemLogin}}
+                </span>
+            </div>              
             <div class="form-container row">
                 <div class="form-container__group flex-12 login__item">
-                    <label for="nomeProd">Email:</label>
-                    <input id="nomeProd"
-                        name="nomeProd"
-                        
+                    <label for="email">Digite um email:</label>
+                    <input id="email"
+                        name="email"
+                        v-model="email"
                         type="text">
                 </div>
                 <div class="form-container__group flex-12 login__item">
-                    <label for="nomeProd">Senha:</label>
-                    <input id="nomeProd"
-                        name="nomeProd"
-                        
+                    <label for="senha">Digite uma senha:</label>
+                    <input id="senha"
+                        name="senha"
+                        v-model="senha"
                         type="password">
                 </div>          
             </div>
             <div class="row tocenter login__buttons">
-                <input class="button login__button" @click="adicionaProduto()" type="button" value="Esqueceu sua senha?">
-                <input class="button login__button" @click="adicionaProduto()" type="button" value="Fazer login">
-            </div>        
+                <input class="button login__button" @click="loga()" type="button" value="Fazer login">
+            </div>      
         </div>
     </div>
 </template>
 
 <script>
+import firebase from 'firebase';
 
+export default {
+    data() {
+        return {
+            email: '',
+            senha: '',
+            mensagemLogin: '',
+        }
+    },
+    methods: {
+        loga() {
+            this.mensagemLogin = "";
+            firebase.auth().signInWithEmailAndPassword(this.email, this.senha).then(
+                user => {
+                        this.mensagemLogin = "Logado com sucesso!";
+                    setTimeout(() => {
+                        this.mensagemLogin = "";
+                    }, 4000);
+                },
+                err => {
+                    this.mensagemLogin = "Opa! Obtivemos o seguinte erro: " + err;
+                    setTimeout(() => {
+                        this.mensagemLogin = "";
+                    }, 4000);
+                }
+            )
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped>
