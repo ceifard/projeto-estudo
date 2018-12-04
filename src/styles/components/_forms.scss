@@ -1,5 +1,6 @@
 .form-container {
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     &__group {
         display: flex;

@@ -1,10 +1,13 @@
 .container {
-    margin: 50px;
+    margin: 35px auto;
+    max-width: 75vw;
     padding: 10px;
-    min-height: 10px;
     background: white;
     box-shadow: 1px 1px 5px black; 
+    &.container-small {
+        max-width: 60vw;
+    }
     &.container-large {
-        margin: 20px;
+        max-width: 90vw;
     }
 }
