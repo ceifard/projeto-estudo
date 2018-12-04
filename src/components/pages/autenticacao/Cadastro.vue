@@ -42,9 +42,6 @@ export default {
     },
     methods: {
         cadastra() {
-            setTimeout(() => {
-                this.mensagemLogin = "Sua conta foi criada com sucesso!";
-            }, 2000);
             this.mensagemLogin = "";
             firebase.auth().createUserWithEmailAndPassword(this.email, this.senha).then(
                 user => {
