@@ -6,13 +6,31 @@ import ListagemProdutos from './components/pages/listagem-produtos/ListagemProdu
 
 export const routes = [
     {
-        path: '',
-        component: Principal,
-        title: 'Principal',
+        path: '*',
+        redirect: '/login'
     },  
+    {
+        path: '/',
+        redirect: '/login'
+    }, 
+    {
+        path: '/login',
+        name: 'login',
+        title: 'Login',
+        component: Login,
+    },       
+    {
+        path: '/cadastro',
+        name: 'cadastro',
+        title: 'Cadastro',
+        component: Cadastro,
+    },               
     {
         path: '/principal',
         component: Principal,
+        meta: {
+            requiresAuth: true
+        },
         title: 'Principal',
     },      
     {
@@ -20,23 +38,17 @@ export const routes = [
         name: 'cadastro-produtos',
         title: 'Cadastro de Produtos',
         component: CadastroProdutos,
+        meta: {
+            requiresAuth: true
+        }        
     },    
     {
         path: '/listagem-produtos',
         name: 'listagem-produtos',
         title: 'Listagem de Produtos',
         component: ListagemProdutos,
-    },
-    {
-        path: '/cadastro',
-        name: 'cadastro',
-        title: 'Cadastro',
-        component: Cadastro,
-    },        
-    {
-        path: '/login',
-        name: 'login',
-        title: 'Login',
-        component: Login,
-    }    
+        meta: {
+            requiresAuth: true
+        }        
+    },   
 ]

@@ -42,3 +42,12 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser; //checa se tem usuario logado, se tiver retorna o usuario, se nao tiver retorna null
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth); //checa se, na rota que estamos sendo direcionados, há o meta "requiresAuth" setado nas rotas de routes.js
+
+  if(requiresAuth && !currentUser) next('login'); //se a rota que estamos navegando requer autenticação e nao há usuário logado, redirecionamos para a pagina de login
+  else if (!requiresAuth && currentUser) next('principal'); //se a rota que estamos navegando NÃO requer autenticação (cadastro e login) e há usuário logado, redirecionamos para a pagina de principal
+  else next(); //senão, deixamos a navegação prosseguir
+})
