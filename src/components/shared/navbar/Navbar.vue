@@ -1,10 +1,10 @@
 <template>
     <nav class="navbar">
         <ul class="navbar__navmenu">
-            <router-link class="navbar__navmenu--link" to="/cadastro">
+            <router-link class="navbar__navmenu--link" to="/cadastro-produtos">
                 <li>Cadastro</li>
             </router-link>
-            <router-link class="navbar__navmenu--link" to="/listagem">
+            <router-link class="navbar__navmenu--link" to="/listagem-produtos">
                 <li>Listagem</li>
             </router-link>
         </ul>

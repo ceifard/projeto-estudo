@@ -1,25 +1,32 @@
-import Cadastro from './components/pages/cadastro/Cadastro.vue';
-import Listagem from './components/pages/listagem/Listagem.vue';
-import Login from './components/pages/login/Login.vue';
+import Login from './components/pages/autenticacao/Login.vue';
+import Cadastro from './components/pages/autenticacao/Cadastro.vue';
+import CadastroProdutos from './components/pages/cadastro-produtos/CadastroProdutos.vue';
+import ListagemProdutos from './components/pages/listagem-produtos/ListagemProdutos.vue';
 
 export const routes = [
     {
         path: '',
-        component: Cadastro,
+        component: CadastroProdutos,
         title: 'Cadastro de Produtos',
     },      
     {
-        path: '/cadastro',
-        name: 'cadastro',
+        path: '/cadastro-produtos',
+        name: 'cadastro-produtos',
         title: 'Cadastro de Produtos',
-        component: Cadastro,
+        component: CadastroProdutos,
     },    
     {
-        path: '/listagem',
-        name: 'listagem',
+        path: '/listagem-produtos',
+        name: 'listagem-produtos',
         title: 'Listagem de Produtos',
-        component: Listagem,
+        component: ListagemProdutos,
     },
+    {
+        path: '/cadastro',
+        name: 'cadastro',
+        title: 'Cadastro',
+        component: Cadastro,
+    },        
     {
         path: '/login',
         name: 'login',

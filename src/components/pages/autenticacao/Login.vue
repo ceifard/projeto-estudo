@@ -6,14 +6,14 @@
                     <label for="nomeProd">Nome de usuário:</label>
                     <input id="nomeProd"
                         name="nomeProd"
-                        v-model="nomeProd"
+                        
                         type="text">
                 </div>
                 <div class="form-container__group flex-12 login__item">
                     <label for="nomeProd">Senha:</label>
                     <input id="nomeProd"
                         name="nomeProd"
-                        v-model="nomeProd"
+                        
                         type="password">
                 </div>          
             </div>
