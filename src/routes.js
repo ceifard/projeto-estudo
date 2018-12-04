@@ -1,3 +1,4 @@
+import Principal from './components/pages/principal/Principal.vue';
 import Login from './components/pages/autenticacao/Login.vue';
 import Cadastro from './components/pages/autenticacao/Cadastro.vue';
 import CadastroProdutos from './components/pages/cadastro-produtos/CadastroProdutos.vue';
@@ -6,8 +7,13 @@ import ListagemProdutos from './components/pages/listagem-produtos/ListagemProdu
 export const routes = [
     {
         path: '',
-        component: CadastroProdutos,
-        title: 'Cadastro de Produtos',
+        component: Principal,
+        title: 'Principal',
+    },  
+    {
+        path: '/principal',
+        component: Principal,
+        title: 'Principal',
     },      
     {
         path: '/cadastro-produtos',

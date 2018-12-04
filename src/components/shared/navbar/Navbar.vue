@@ -1,6 +1,9 @@
 <template>
     <nav class="navbar">
         <ul class="navbar__navmenu">
+            <router-link class="navbar__navmenu--link" to="/principal">
+                <li>Principal</li>
+            </router-link>            
             <router-link class="navbar__navmenu--link" to="/cadastro-produtos">
                 <li>Cadastro</li>
             </router-link>
