@@ -3,7 +3,7 @@
         <div class="container login">
             <div class="form-container row">
                 <div class="form-container__group flex-12 login__item">
-                    <label for="nomeProd">Nome de usuário:</label>
+                    <label for="nomeProd">Email:</label>
                     <input id="nomeProd"
                         name="nomeProd"
                         
