@@ -5,10 +5,10 @@
                 <li>Principal</li>
             </router-link>            
             <router-link class="navbar__navmenu--link" to="/cadastro-produtos">
-                <li>Cadastro</li>
+                <li>Cadastro de Produtos</li>
             </router-link>
             <router-link class="navbar__navmenu--link" to="/listagem-produtos">
-                <li>Listagem</li>
+                <li>Listagem de Produtos</li>
             </router-link>
         </ul>
     </nav>

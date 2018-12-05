@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <header>
-        <header-produtos :titulo="routeTitle"></header-produtos>
+        <header-produtos :titulo="routeTitle" @sair="sair" :usuarioLogado="usuarioLogado"></header-produtos>
         <navbar-produtos></navbar-produtos>
       </header>
       <main-produtos>
@@ -20,6 +20,7 @@ import Footer from './components/shared/footer/Footer.vue'
 import Main from './components/shared/main/Main.vue'
 
 import { routes } from './routes';
+import firebase from 'firebase';
 
 export default {
   components: {
@@ -32,10 +33,22 @@ export default {
     
   },
   computed: {
+    usuarioLogado() {
+      return this.$store.getters.usuarioLogado;
+    },
     routeTitle() {
       let path = this.$route.path === "/" ? "" : this.$route.path;
       let route = routes.find( route => route.path == path )
       return route.title;
+    }
+  },
+
+  methods: {
+    sair() {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login');
+        this.$store.commit('usuarioLogado', false);
+      })
     }
   }
 }

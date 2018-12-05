@@ -2,8 +2,8 @@
     <div class="login-box">    
         <div class="container login">
             <div class="row tocenter">
-                <span class="mensagem-login" v-if="mensagemLogin.length">
-                    {{mensagemLogin}}
+                <span class="mensagem-login" v-if="mensagem.length">
+                    {{mensagem}}
                 </span>
             </div>              
             <div class="form-container row">
@@ -23,7 +23,10 @@
                 </div>          
             </div>
             <div class="row tocenter login__buttons">
-                <input class="button login__button" @click="loga()" type="button" value="Fazer login">
+                <router-link to="/cadastro">
+                    <input class="button login__button" @click="loga()" type="button" value="Não tem cadastro? clique aqui">
+                </router-link>                      
+                <input class="button login__button" @click="loga()" type="button" value="Fazer login">          
             </div>      
         </div>
     </div>
@@ -37,23 +40,29 @@ export default {
         return {
             email: '',
             senha: '',
-            mensagemLogin: '',
+        }
+    },
+    computed: {
+        mensagem() {
+            return this.$store.getters.mensagem;
         }
     },
     methods: {
         loga() {
-            this.mensagemLogin = "";
+            this.$store.commit('mensagem', '');
             firebase.auth().signInWithEmailAndPassword(this.email, this.senha).then(
                 user => {
-                        this.mensagemLogin = "Logado com sucesso!";
+                        this.$store.commit('mensagem', 'Logado com sucesso!');
+                        this.$store.commit('usuarioLogado', true);
                     setTimeout(() => {
-                        this.mensagemLogin = "";
-                    }, 4000);
+                        this.$store.commit('mensagem', '');
+                        this.$router.replace('principal');
+                    }, 2000);
                 },
                 err => {
-                    this.mensagemLogin = "Opa! Obtivemos o seguinte erro: " + err;
+                    this.$store.commit('mensagem', 'Opa! Obtivemos o seguinte erro: ' + err);
                     setTimeout(() => {
-                        this.mensagemLogin = "";
+                        this.$store.commit('mensagem', '');
                     }, 4000);
                 }
             )

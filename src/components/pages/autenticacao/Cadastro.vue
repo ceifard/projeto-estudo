@@ -2,8 +2,8 @@
     <div class="login-box">
         <div class="container login">
             <div class="row tocenter">
-                <span class="mensagem-login" v-if="mensagemLogin.length">
-                    {{mensagemLogin}}
+                <span class="mensagem-login" v-if="mensagem.length">
+                    {{mensagem}}
                 </span>
             </div>               
             <div class="form-container row">
@@ -37,23 +37,29 @@ export default {
         return {
             email: '',
             senha: '',
-            mensagemLogin: '',
         }
     },
+    computed: {
+        mensagem() {
+            return this.$store.getters.mensagem;
+        }
+    },    
     methods: {
         cadastra() {
-            this.mensagemLogin = "";
+            this.$store.commit('mensagem', '');
             firebase.auth().createUserWithEmailAndPassword(this.email, this.senha).then(
                 user => {
-                        this.mensagemLogin = "Sua conta foi criada com sucesso!";
+                        this.$store.commit('mensagem','Sua conta foi criada com sucesso!');
+                        this.$router.replace('principal');
+                        this.$store.commit('usuarioLogado', true);
                     setTimeout(() => {
-                        this.mensagemLogin = "";
-                    }, 4000);
+                        this.$store.commit('mensagem', '');
+                    }, 2000);
                 },
                 err => {
-                    this.mensagemLogin = "Opa! Obtivemos o seguinte erro: " + err;
+                    this.$store.commit('mensagem','Opa! Obtivemos o seguinte erro: ' + err);
                     setTimeout(() => {
-                        this.mensagemLogin = "";
+                        this.$store.commit('mensagem', '');
                     }, 4000);
                 }
             )

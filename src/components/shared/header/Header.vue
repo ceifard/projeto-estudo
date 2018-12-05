@@ -7,7 +7,10 @@
             <h2>{{titulo}}</h2>
         </div>
         <div class="app-header__user bordered">
-            <span><font-awesome-icon class="usericon" icon="user" />Seja bem vindo, Fernando!</span>
+            <div v-if="usuarioLogado">
+                <span><font-awesome-icon class="usericon" icon="user" />Seja bem vindo, Fernando!</span>
+                <p><a href="#" @click="disparaSair"><font-awesome-icon class="closeicon" icon="window-close" />Sair</a></p>
+            </div>
         </div>
     </div>
 </template>
@@ -17,8 +20,14 @@
         props: {
             titulo: {
                 required: true,
+            },
+            usuarioLogado: Boolean
+        },
+        methods: {
+            disparaSair() {
+                this.$emit('sair');
             }
-        }
+        }        
     }
 </script>
 
@@ -54,12 +63,15 @@
             &__user {
                 margin-right: 2px;
                 display: block;
-                align-self: center;
+                align-self: flex-end;
                 font-size: 12px;
             }
             .usericon {
                 margin-right: 7px;
                 margin-bottom: 1.5px;
+            }
+            .closeicon {
+                margin-right: 7px;
             }         
         }        
     }

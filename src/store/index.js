@@ -7,12 +7,14 @@ Vue.use(Vuex)
 
 const state = {
     carregando: false,
-    mensagem: ''
+    mensagem: '',
+    usuarioLogado: false,
 }
 
 const getters = {
     carregando: state => state.carregando,
     mensagem: state => state.mensagem,
+    usuarioLogado: state => state.usuarioLogado,
 }
 
 const mutations = { 
@@ -21,7 +23,10 @@ const mutations = {
     },
     mensagem(state, obj) {
         state.mensagem = obj;
-    }    
+    },
+    usuarioLogado(state, obj) {
+        state.usuarioLogado = obj;
+    }            
 }
 
 export default new Vuex.Store({

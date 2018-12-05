@@ -13,7 +13,7 @@ import store from './store'
 
 //Relativos ao FontAwesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser  } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faWindowClose  } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 Vue.use(VueRouter);
@@ -21,27 +21,34 @@ export const router = new VueRouter({
   routes
 });
 
-library.add(faUser);
+library.add(faUser, faWindowClose);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
-var config = {
+let app = '';
+
+firebase.initializeApp({
   apiKey: "AIzaSyDX8OWYaDP3s-5MfCSGNBOX4bzjrXS3RB4",
   authDomain: "projeto-estudo-86170.firebaseapp.com",
   databaseURL: "https://projeto-estudo-86170.firebaseio.com",
   projectId: "projeto-estudo-86170",
   storageBucket: "projeto-estudo-86170.appspot.com",
   messagingSenderId: "610992691384"
-};
-firebase.initializeApp(config);
+});
 
 
 Vue.config.productionTip = false
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+//garante que a aplicação só será renderizada após o firebase checar a autenticação do usuário
+firebase.auth().onAuthStateChanged(() => {
+  console.log(firebase.auth().currentUser)
+  if (!app) {
+    app = new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+  }
+})
 
 router.beforeEach((to, from, next) => {
   const currentUser = firebase.auth().currentUser; //checa se tem usuario logado, se tiver retorna o usuario, se nao tiver retorna null
