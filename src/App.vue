@@ -4,7 +4,14 @@
         <header-produtos :titulo="routeTitle" @sair="sair" :usuarioLogado="usuarioLogado"></header-produtos>
         <navbar-produtos></navbar-produtos>
       </header>
-      <main-produtos>
+      <main-produtos> 
+      <!-- <div class="container-carregamento">
+        <div class="modal-carregamento">
+          <div class="conteudo-carregamento">
+            <span>Carregando informações...</span>
+          </div>
+        </div>
+      </div>                -->
           <router-view></router-view>
       </main-produtos>        
       <!-- <footer>
@@ -54,6 +61,33 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.container-carregamento {
+  content: '';
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+  .modal-carregamento {
+    display: flex;
+    justify-content: center;
+    .conteudo-carregamento {
+      border-radius: 7px;
+      background: white;
+      padding: 15px;
+      color: black;
+      width: 15vw;
+      text-align: center;
+    }
+  }
+}
+</style>
+>
+
 
 </style>
