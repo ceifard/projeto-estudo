@@ -13,7 +13,7 @@ import store from './store'
 
 //Relativos ao FontAwesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUser, faWindowClose  } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faWindowClose, faSync  } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 Vue.use(VueRouter);
@@ -21,7 +21,7 @@ export const router = new VueRouter({
   routes
 });
 
-library.add(faUser, faWindowClose);
+library.add(faUser, faWindowClose, faSync);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 let app = '';

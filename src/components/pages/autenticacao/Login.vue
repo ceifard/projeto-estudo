@@ -50,10 +50,12 @@ export default {
     methods: {
         loga() {
             this.$store.commit('mensagem', '');
+            this.$store.commit('carregando', true);
             firebase.auth().signInWithEmailAndPassword(this.email, this.senha).then(
                 user => {
                         this.$store.commit('mensagem', 'Logado com sucesso!');
                         this.$store.commit('usuarioLogado', true);
+                        this.$store.commit('carregando', false);
                     setTimeout(() => {
                         this.$store.commit('mensagem', '');
                         this.$router.replace('principal');
@@ -61,6 +63,7 @@ export default {
                 },
                 err => {
                     this.$store.commit('mensagem', 'Opa! Obtivemos o seguinte erro: ' + err);
+                    this.$store.commit('carregando', false);
                     setTimeout(() => {
                         this.$store.commit('mensagem', '');
                     }, 4000);

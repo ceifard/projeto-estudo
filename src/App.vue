@@ -5,13 +5,7 @@
         <navbar-produtos></navbar-produtos>
       </header>
       <main-produtos> 
-      <!-- <div class="container-carregamento">
-        <div class="modal-carregamento">
-          <div class="conteudo-carregamento">
-            <span>Carregando informações...</span>
-          </div>
-        </div>
-      </div>                -->
+          <modal-carregamento :carregando="$store.getters.carregando"></modal-carregamento>             
           <router-view></router-view>
       </main-produtos>        
       <!-- <footer>
@@ -25,6 +19,7 @@ import Header from './components/shared/header/Header.vue'
 import Navbar from './components/shared/navbar/Navbar.vue'
 import Footer from './components/shared/footer/Footer.vue'
 import Main from './components/shared/main/Main.vue'
+import ModalCarregamento from './components/shared/modal-carregamento/ModalCarregamento.vue'
 
 import { routes } from './routes';
 import firebase from 'firebase';
@@ -34,7 +29,8 @@ export default {
     'header-produtos': Header,
     'navbar-produtos': Navbar,
     'main-produtos': Main,
-    'footer-produtos': Footer
+    'footer-produtos': Footer,
+    'modal-carregamento': ModalCarregamento
   },
   created() {
     
@@ -52,7 +48,9 @@ export default {
 
   methods: {
     sair() {
+      this.$store.commit('carregando', true);
       firebase.auth().signOut().then(() => {
+        this.$store.commit('carregando', false);
         this.$router.replace('login');
         this.$store.commit('usuarioLogado', false);
       })
@@ -61,33 +59,3 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.container-carregamento {
-  content: '';
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.3);
-  .modal-carregamento {
-    display: flex;
-    justify-content: center;
-    .conteudo-carregamento {
-      border-radius: 7px;
-      background: white;
-      padding: 15px;
-      color: black;
-      width: 15vw;
-      text-align: center;
-    }
-  }
-}
-</style>
->
-
-
-</style>

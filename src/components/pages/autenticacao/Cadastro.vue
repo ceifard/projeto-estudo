@@ -47,17 +47,21 @@ export default {
     methods: {
         cadastra() {
             this.$store.commit('mensagem', '');
+            this.$store.commit('carregando', true);
             firebase.auth().createUserWithEmailAndPassword(this.email, this.senha).then(
                 user => {
                         this.$store.commit('mensagem','Sua conta foi criada com sucesso!');
                         this.$router.replace('principal');
                         this.$store.commit('usuarioLogado', true);
+                        this.$store.commit('carregando', false);
                     setTimeout(() => {
                         this.$store.commit('mensagem', '');
+                        this.$store.commit('carregando', false);
                     }, 2000);
                 },
                 err => {
                     this.$store.commit('mensagem','Opa! Obtivemos o seguinte erro: ' + err);
+                    this.$store.commit('carregando', false);
                     setTimeout(() => {
                         this.$store.commit('mensagem', '');
                     }, 4000);
