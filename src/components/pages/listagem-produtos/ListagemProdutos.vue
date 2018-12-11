@@ -23,11 +23,14 @@
 
 <script>
     export default {
+        created() {
+            this.$store.dispatch('listaProdutos')
+        },
         computed: {
             produtos() {
                 return this.$store.getters.produtos;
             }
-        }
+        },
     }
 </script>
 
