@@ -33,7 +33,7 @@ export default {
     'modal-carregamento': ModalCarregamento
   },
   created() {
-    
+    //console.log(firebase.firestore().collection('produtos').add({nomeProd:'asdsad', precoProd: 'bb', categoriaProd: 'cc'}));
   },
   computed: {
     usuarioLogado() {

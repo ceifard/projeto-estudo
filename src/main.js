@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 
 // Relativo ao Firebase
-import firebase from 'firebase';
+const fb = require('./firebaseConfig.js')
 
 //Relativos ao Router
 import VueRouter from 'vue-router';
@@ -16,31 +16,16 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUser, faWindowClose, faSync  } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
+Vue.config.productionTip = false
+
 Vue.use(VueRouter);
 export const router = new VueRouter({
   routes
 });
 
-library.add(faUser, faWindowClose, faSync);
-Vue.component('font-awesome-icon', FontAwesomeIcon);
-
-let app = '';
-
-firebase.initializeApp({
-  apiKey: "AIzaSyDX8OWYaDP3s-5MfCSGNBOX4bzjrXS3RB4",
-  authDomain: "projeto-estudo-86170.firebaseapp.com",
-  databaseURL: "https://projeto-estudo-86170.firebaseio.com",
-  projectId: "projeto-estudo-86170",
-  storageBucket: "projeto-estudo-86170.appspot.com",
-  messagingSenderId: "610992691384"
-});
-
-
-Vue.config.productionTip = false
-
 //garante que a aplicação só será renderizada após o firebase checar a autenticação do usuário
-firebase.auth().onAuthStateChanged(() => {
-  console.log(firebase.auth().currentUser)
+let app
+fb.auth.onAuthStateChanged(user => {
   if (!app) {
     app = new Vue({
       router,
@@ -51,10 +36,17 @@ firebase.auth().onAuthStateChanged(() => {
 })
 
 router.beforeEach((to, from, next) => {
-  const currentUser = firebase.auth().currentUser; //checa se tem usuario logado, se tiver retorna o usuario, se nao tiver retorna null
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth); //checa se, na rota que estamos sendo direcionados, há o meta "requiresAuth" setado nas rotas de routes.js
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth) //checa se, na rota que estamos sendo direcionados, há o meta "requiresAuth" setado nas rotas de routes.js
+  const currentUser = fb.auth.currentUser  //checa se tem usuario logado, se tiver retorna o usuario, se nao tiver retorna null
 
-  if(requiresAuth && !currentUser) next('login'); //se a rota que estamos navegando requer autenticação e nao há usuário logado, redirecionamos para a pagina de login
-  else if (!requiresAuth && currentUser) next('principal'); //se a rota que estamos navegando NÃO requer autenticação (cadastro e login) e há usuário logado, redirecionamos para a pagina de principal
-  else next(); //senão, deixamos a navegação prosseguir
+  if (requiresAuth && !currentUser) {  //se a rota que estamos navegando requer autenticação e nao há usuário logado, redirecionamos para a pagina de login
+      next('/login') 
+  } else if (!requiresAuth && currentUser) {  //se a rota que estamos navegando NÃO requer autenticação (cadastro e login) e há usuário logado, redirecionamos para a pagina de principal
+      next()
+  } else { //senão, deixamos a navegação prosseguir
+      next()
+  }
 })
+
+library.add(faUser, faWindowClose, faSync);
+Vue.component('font-awesome-icon', FontAwesomeIcon);

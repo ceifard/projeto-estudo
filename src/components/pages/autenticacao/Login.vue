@@ -24,7 +24,7 @@
             </div>
             <div class="row tocenter login__buttons">
                 <router-link to="/cadastro">
-                    <input class="button login__button" @click="loga()" type="button" value="Não tem cadastro? clique aqui">
+                    <input class="button login__button" type="button" value="Não tem cadastro? clique aqui">
                 </router-link>                      
                 <input class="button login__button" @click="loga()" type="button" value="Fazer login">          
             </div>      
