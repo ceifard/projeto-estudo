@@ -26,6 +26,7 @@ export const router = new VueRouter({
 //garante que a aplicação só será renderizada após o firebase checar a autenticação do usuário
 let app
 fb.auth.onAuthStateChanged(user => {
+  user ? store.commit('usuarioLogado', true) : store.commit('usuarioLogado', false);
   if (!app) {
     app = new Vue({
       router,
@@ -40,13 +41,15 @@ router.beforeEach((to, from, next) => {
   const currentUser = fb.auth.currentUser  //checa se tem usuario logado, se tiver retorna o usuario, se nao tiver retorna null
 
   if (requiresAuth && !currentUser) {  //se a rota que estamos navegando requer autenticação e nao há usuário logado, redirecionamos para a pagina de login
-      next('/login') 
+      next('login') 
   } else if (!requiresAuth && currentUser) {  //se a rota que estamos navegando NÃO requer autenticação (cadastro e login) e há usuário logado, redirecionamos para a pagina de principal
-      next()
+      next('principal');
   } else { //senão, deixamos a navegação prosseguir
       next()
   }
+
 })
 
+//configuração do fontawesome
 library.add(faUser, faWindowClose, faSync);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
