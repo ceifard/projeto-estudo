@@ -21,7 +21,7 @@ const adicionaProduto = ({commit, state}) => {
     })
 
 
-    // ADICIONAR PRODUTO SEM BACKEND
+    // ADICIONAR PRODUTO SEM BACKEND, APENAS NA STORE
 
     // let produtos = state.produtos;
     // let produtoNovo = state.produto;
