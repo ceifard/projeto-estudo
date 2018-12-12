@@ -8,4 +8,18 @@
         cursor: pointer;
         background: #2f352f;
     }
+    &.primary {
+        background: #4b66bed2;
+        &:active, &:hover {
+            cursor: pointer;
+            background: #1e3ea8d2;
+        }        
+    }
+    &.danger {
+        background: #da4646d2;
+        &:active, &:hover {
+            cursor: pointer;
+            background: #d81616e5;
+        }        
+    }    
 }

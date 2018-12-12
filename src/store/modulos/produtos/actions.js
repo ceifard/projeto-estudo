@@ -35,6 +35,13 @@ const adicionaProduto = ({commit, state}) => {
     */
 }
 
+const removeProduto = ({commit, state}) => {
+    // commit('carregando', true);
+    // fb.produtosCollection.remove(state.produto).then(() => {
+    //     commit('carregando', false);
+    // })
+}
+
 export default {
     listaProdutos,
     adicionaProduto,
