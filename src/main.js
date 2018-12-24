@@ -1,22 +1,43 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-// Relativo ao Firebase
-const fb = require('./firebaseConfig.js')
-
 //Relativos ao Router
 import VueRouter from 'vue-router';
 import { routes } from './routes';
 
-//Relativos ao VueX
+//Relativos ao flux, com VueX
 import store from './store' 
 
-//Relativos ao FontAwesome
+// Relativo à autenticação com FireBase
+const fb = require('./firebaseConfig.js')
+
+// Relativo á validação de forms com VeeValidate
+import VeeValidate from 'vee-validate'
+import msg from './pt_BR'; //tradução pra portugues
+
+//Relativos aos ícones com FontAwesome
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faUser, faWindowClose, faSync  } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 Vue.config.productionTip = false
+
+//configuração do fontawesome
+library.add(faUser, faWindowClose, faSync);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+//configuração do VeeValidate
+Vue.use(VeeValidate, {
+
+  fieldsBagName: 'formFields',
+  locale: 'pt_BR',
+  dictionary: {
+    pt_BR: {
+      messages: msg
+    }
+  }
+
+});
 
 Vue.use(VueRouter);
 export const router = new VueRouter({
@@ -49,7 +70,3 @@ router.beforeEach((to, from, next) => {
   }
 
 })
-
-//configuração do fontawesome
-library.add(faUser, faWindowClose, faSync);
-Vue.component('font-awesome-icon', FontAwesomeIcon);
