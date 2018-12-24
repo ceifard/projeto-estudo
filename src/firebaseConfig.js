@@ -24,10 +24,12 @@ db.settings(settings)
 
 // collections do firebase (bancos de dados)
 const produtosCollection = db.collection('produtos')
+const selectsCollection = db.collection('selects').doc('selects')
 
 export {
     db,
     auth,
     currentUser,
     produtosCollection,
+    selectsCollection
 }

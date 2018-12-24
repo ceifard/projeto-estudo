@@ -25,13 +25,22 @@
             </div>
             <div class="form-container__group flex-3">
                 <label for="categoriaProd">Categoria do Produto:</label>
-                <input id="categoriaProd" 
+                <!-- <input id="categoriaProd" 
                        name="categoriaProd" 
                        v-model="categoriaProd"
                        v-validate="'required|max: 50'"
                        data-vv-as="'Categoria do Produto'"
                        type="text"
-                       maxlength="50">
+                       maxlength="50"> -->
+                <select id="categoriaProd"
+                        name="categoriaProd" 
+                        v-model="categoriaProd"
+                        v-validate="'required'"
+                        data-vv-as="'Categoria do Produto'">
+                        <!-- <option v-for="categoria in $store.getters.categorias" :value="categoria.value">
+                            {{ option.text }}
+                        </option>                                                > -->
+                </select>
                 <span class="error">{{ errors.first('categoriaProd') }}</span>       
             </div>            
         </div>
@@ -52,6 +61,9 @@
                 'produto.precoProd',
                 'produto.categoriaProd',
             ]),                                
+        },
+        created() {
+            this.$store.dispatch('categorias');
         },
         methods: {
             adicionaProduto() {

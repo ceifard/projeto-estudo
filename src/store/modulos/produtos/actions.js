@@ -42,7 +42,16 @@ const removeProduto = ({commit, state}) => {
     // })
 }
 
+const categorias = ({commit, state}) => {
+    fb.selectsCollection.get().then(function(res) {
+        commit('categorias', res.data().categorias);
+    }).catch(function(error) {
+        console.log("Erro ao buscar categorias:", error);
+    });
+}
+
 export default {
     listaProdutos,
     adicionaProduto,
+    categorias
 }

@@ -7,16 +7,19 @@ const state = {
     nomeProd: '',
     precoProd: '',
     categoriaProd: '',    
-  }
+  },
+  categorias: []
 }
 
 const getters =  {
   produtos: () => state.produtos,
+  categorias: () => state.categorias,
   getField,
 }
 
 const mutations =  {
   produtos: (state, obj) => state.produtos = obj,
+  categorias: (state, obj) => state.categorias = obj,
   updateField,
 }
 
