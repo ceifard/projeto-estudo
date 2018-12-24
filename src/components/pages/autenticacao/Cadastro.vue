@@ -8,18 +8,24 @@
             </div>               
             <div class="form-container row">
                 <div class="form-container__group flex-12 login__item">
-                    <label for="email">Digite um email:</label>
+                    <label for="email">Digite um e-mail:</label>
                     <input id="email"
                         name="email"
                         v-model="email"
+                        v-validate="'required|email|max: 50'"
+                        data-vv-as="'E-mail'"                        
                         type="text">
+                    <span class="error">{{ errors.first('email') }}</span>
                 </div>
                 <div class="form-container__group flex-12 login__item">
                     <label for="senha">Digite uma senha:</label>
                     <input id="senha"
                         name="senha"
                         v-model="senha"
+                        v-validate="'required|min: 6|max: 50'"
+                        data-vv-as="'Senha'"                             
                         type="password">
+                    <span class="error">{{ errors.first('senha') }}</span>
                 </div>          
             </div>
             <div class="row tocenter login__buttons">
@@ -46,27 +52,36 @@ export default {
     },    
     methods: {
         cadastra() {
-            this.$store.commit('mensagem', '');
-            this.$store.commit('carregando', true);
-            firebase.auth().createUserWithEmailAndPassword(this.email, this.senha).then(
-                user => {
-                        this.$store.commit('mensagem','Sua conta foi criada com sucesso!');
-                        this.$router.replace('principal');
-                        this.$store.commit('usuarioLogado', true);
-                        this.$store.commit('carregando', false);
-                    setTimeout(() => {
-                        this.$store.commit('mensagem', '');
-                        this.$store.commit('carregando', false);
-                    }, 2000);
-                },
-                err => {
-                    this.$store.commit('mensagem','Opa! Obtivemos o seguinte erro: ' + err);
-                    this.$store.commit('carregando', false);
-                    setTimeout(() => {
-                        this.$store.commit('mensagem', '');
-                    }, 4000);
-                }
-            )
+            this.$validator.validateAll()
+                    .then(success => {                        
+
+                        if(success) {
+                            this.$store.commit('mensagem', '');
+                            this.$store.commit('carregando', true);                              
+                            firebase.auth().createUserWithEmailAndPassword(this.email, this.senha).then(
+                                user => {
+                                        this.$store.commit('mensagem','Sua conta foi criada com sucesso!');
+                                        this.$router.replace('principal');
+                                        this.$store.commit('usuarioLogado', true);
+                                        this.$store.commit('carregando', false);
+                                    setTimeout(() => {
+                                        this.$store.commit('mensagem', '');
+                                        this.$store.commit('carregando', false);
+                                    }, 2000);
+                                },
+                                err => {
+                                    this.$store.commit('mensagem','Opa! Obtivemos o seguinte erro: ' + err);
+                                    this.$store.commit('carregando', false);
+                                    setTimeout(() => {
+                                        this.$store.commit('mensagem', '');
+                                    }, 4000);
+                                }
+                            )        
+                        }  else {
+                            window.scrollTo(0,0)
+                        }
+
+                });            
         }
     }
 }

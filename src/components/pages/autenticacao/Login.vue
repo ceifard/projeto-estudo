@@ -12,14 +12,20 @@
                     <input id="email"
                         name="email"
                         v-model="email"
+                        v-validate="'required|email|max: 50'"
+                        data-vv-as="'E-mail'"                           
                         type="text">
+                    <span class="error">{{ errors.first('email') }}</span>    
                 </div>
                 <div class="form-container__group flex-12 login__item">
-                    <label for="senha">Digite uma senha:</label>
+                    <label for="senha">Digite sua senha:</label>
                     <input id="senha"
                         name="senha"
                         v-model="senha"
+                        v-validate="'required|min: 6|max: 50'"
+                        data-vv-as="'Senha'"                            
                         type="password">
+                    <span class="error">{{ errors.first('senha') }}</span>    
                 </div>          
             </div>
             <div class="row tocenter login__buttons">
@@ -49,26 +55,36 @@ export default {
     },
     methods: {
         loga() {
-            this.$store.commit('mensagem', '');
-            this.$store.commit('carregando', true);
-            firebase.auth().signInWithEmailAndPassword(this.email, this.senha).then(
-                user => {
-                        this.$store.commit('mensagem', 'Logado com sucesso!');
-                        this.$store.commit('usuarioLogado', true);
-                        this.$store.commit('carregando', false);
-                    setTimeout(() => {
-                        this.$store.commit('mensagem', '');
-                        this.$router.replace('principal');
-                    }, 2000);
-                },
-                err => {
-                    this.$store.commit('mensagem', 'Opa! Obtivemos o seguinte erro: ' + err);
-                    this.$store.commit('carregando', false);
-                    setTimeout(() => {
-                        this.$store.commit('mensagem', '');
-                    }, 4000);
-                }
-            )
+            this.$validator.validateAll()
+                    .then(success => {         
+
+                        if(success) {
+                            this.$store.commit('mensagem', '');
+                            this.$store.commit('carregando', true);                            
+                            firebase.auth().signInWithEmailAndPassword(this.email, this.senha).then(
+                                user => {
+                                        this.$store.commit('mensagem', 'Logado com sucesso!');
+                                        this.$store.commit('usuarioLogado', true);
+                                        this.$store.commit('carregando', false);
+                                    setTimeout(() => {
+                                        this.$store.commit('mensagem', '');
+                                        this.$router.replace('principal');
+                                    }, 2000);
+                                },
+                                err => {
+                                    this.$store.commit('mensagem', 'Opa! Obtivemos o seguinte erro: ' + err);
+                                    this.$store.commit('carregando', false);
+                                    setTimeout(() => {
+                                        this.$store.commit('mensagem', '');
+                                    }, 4000);
+                                }
+                            )
+                            console.log(this.errors)            
+                        }  else {
+                            window.scrollTo(0,0)
+                        }
+
+                });            
         }
     }
 }

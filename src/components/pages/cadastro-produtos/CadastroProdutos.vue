@@ -7,9 +7,10 @@
                        name="nomeProd"
                        v-model="nomeProd"
                        v-validate="'required|min: 6|max: 50'"
+                       data-vv-as="'Nome do Produto'"
                        type="text"
                        maxlength="50">
-                <span>{{ errors.first('nomeProd') }}</span>       
+                <span class="error">{{ errors.first('nomeProd') }}</span>       
             </div>
             <div class="form-container__group flex-2">
                 <label for="precoProd">Preço do Produto:</label>
@@ -17,9 +18,10 @@
                        name="precoProd" 
                        v-model="precoProd"
                        v-validate="'required|max: 50'"
+                       data-vv-as="'Preço do Produto'"
                        type="text"
                        maxlength="50">
-                <span>{{ errors.first('precoProd') }}</span>       
+                <span class="error">{{ errors.first('precoProd') }}</span>       
             </div>
             <div class="form-container__group flex-3">
                 <label for="categoriaProd">Categoria do Produto:</label>
@@ -27,9 +29,10 @@
                        name="categoriaProd" 
                        v-model="categoriaProd"
                        v-validate="'required|max: 50'"
+                       data-vv-as="'Categoria do Produto'"
                        type="text"
                        maxlength="50">
-                <span>{{ errors.first('categoriaProd') }}</span>       
+                <span class="error">{{ errors.first('categoriaProd') }}</span>       
             </div>            
         </div>
 
