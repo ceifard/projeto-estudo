@@ -52,6 +52,7 @@
         },
         methods: {
             adicionaProduto() {
+                console.log(this.produto)
                 this.$validator.validateAll()
                         .then(success => {         
 
