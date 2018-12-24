@@ -6,21 +6,30 @@
                 <input id="nomeProd"
                        name="nomeProd"
                        v-model="nomeProd"
-                       type="text">
+                       v-validate="'required|min: 6|max: 50'"
+                       type="text"
+                       maxlength="50">
+                <span>{{ errors.first('nomeProd') }}</span>       
             </div>
             <div class="form-container__group flex-2">
                 <label for="precoProd">Preço do Produto:</label>
                 <input id="precoProd"
                        name="precoProd" 
                        v-model="precoProd"
-                       type="text">
+                       v-validate="'required|max: 50'"
+                       type="text"
+                       maxlength="50">
+                <span>{{ errors.first('precoProd') }}</span>       
             </div>
             <div class="form-container__group flex-3">
                 <label for="categoriaProd">Categoria do Produto:</label>
                 <input id="categoriaProd" 
                        name="categoriaProd" 
                        v-model="categoriaProd"
-                       type="text">
+                       v-validate="'required|max: 50'"
+                       type="text"
+                       maxlength="50">
+                <span>{{ errors.first('categoriaProd') }}</span>       
             </div>            
         </div>
 
@@ -43,7 +52,19 @@
         },
         methods: {
             adicionaProduto() {
-                this.$store.dispatch('adicionaProduto');
+                console.log(this.produto)
+                this.$validator.validateAll()
+                        .then(success => {         
+
+                        if(success) {
+                            this.$store.dispatch('adicionaProduto');
+                            console.log(this.errors)            
+                        }  else {
+                            window.scrollTo(0,0)
+                        }
+
+                    });
+                
             }
         }
     }

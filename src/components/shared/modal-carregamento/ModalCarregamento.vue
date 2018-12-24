@@ -39,7 +39,7 @@
       background: white;
       padding: 15px;
       color: black;
-      width: 15vw;
+      width: 25vw;
       min-width: 150px;
       text-align: center;
     }
